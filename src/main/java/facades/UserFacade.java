@@ -42,10 +42,8 @@ public class UserFacade implements IUserFacade
     public User addUser(User u)
     {
 
-        
             EntityManager em = getEntityManager();
-
-            
+ 
             u.addRole("User");
 
             try
@@ -55,6 +53,7 @@ public class UserFacade implements IUserFacade
                 em.persist(u);
                 em.getTransaction().commit();
                 return u;
+                
             }
             finally
             {
@@ -63,7 +62,6 @@ public class UserFacade implements IUserFacade
                     em.close();
                 }
             }
-        
         
     }
 
