@@ -22,41 +22,7 @@ public class UserFacade implements IUserFacade
     IUser interface, then security should work "out of the box" with users and roles stored in your database */
     public UserFacade()
     {
-        try
-        {
-            EntityManager em = getEntityManager();
 
-            //Test Users
-            User user = new User("user", PasswordStorage.createHash("test"));
-            user.addRole("User");
-
-            User admin = new User("admin", PasswordStorage.createHash("test"));
-            admin.addRole("Admin");
-
-            User both = new User("user_admin", PasswordStorage.createHash("test"));
-            both.addRole("User");
-            both.addRole("Admin");
-
-            try
-            {
-                em.getTransaction().begin();
-                em.persist(user);
-                em.persist(admin);
-                em.persist(both);
-                em.getTransaction().commit();
-            }
-            finally
-            {
-                if (em != null)
-                {
-                    em.close();
-                }
-            }
-        }
-        catch (PasswordStorage.CannotPerformOperationException ex)
-        {
-            System.out.println("problem when logging in" + ex);
-        }
     }
 
     @Override
@@ -73,13 +39,41 @@ public class UserFacade implements IUserFacade
 
     }
 
+    public User addUser(User u)
+    {
+
+        
+            EntityManager em = getEntityManager();
+
+            
+            u.addRole("User");
+
+            try
+            {
+
+                em.getTransaction().begin();
+                em.persist(u);
+                em.getTransaction().commit();
+                return u;
+            }
+            finally
+            {
+                if (em != null)
+                {
+                    em.close();
+                }
+            }
+        
+        
+    }
+
     /*
   Return the Roles if users could be authenticated, otherwise null
      */
     @Override
     public List<String> authenticateUser(String username, String password)
     {
-           
+
         EntityManager em = getEntityManager();
         Query query = em.createQuery("SELECT u FROM User u WHERE u.userName = :username", User.class);
         query.setParameter("username", username);
