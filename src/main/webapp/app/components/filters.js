@@ -7,4 +7,16 @@ angular.module('myApp.filters', []).
     return function(input) {
       return input ? '\u2713' : '\u2718';
     };
+  })
+          .filter("searchTypePlaceholder", function (){
+              return function (input) {
+                  
+                  if (input === undefined || input === null || input === ""){
+                      
+                      return "Search Type";
+                  }
+                  
+                  return input;
+              };
   });
+  
