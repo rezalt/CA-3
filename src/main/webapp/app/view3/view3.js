@@ -9,7 +9,7 @@ angular.module('myApp.view3', ['ngRoute'])
   });
 }])
     
-.controller('View3Ctrl', function($http,$scope) {
+.controller('View3Ctrl', function($scope,$http) {
   $scope.searchInput;
   $scope.resultList;
   $scope.isPopulated = false;
@@ -23,6 +23,7 @@ angular.module('myApp.view3', ['ngRoute'])
   };
   
   $scope.search = function (){
+     
       if ($scope.searchInput === undefined || $scope.searchInput === ""){
           alert("Input Field Empty");
           return;
