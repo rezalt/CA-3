@@ -7,6 +7,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import security.IUser;
@@ -15,19 +16,23 @@ import security.IUser;
 public class User implements IUser, Serializable
 {
 
-    private String password;  //Pleeeeease dont store me in plain text
-
     @Id
+    @javax.persistence.GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
     private String userName;
+
+    private String password;  //Pleeeeease dont store me in plain text
 
     @ElementCollection
     @CollectionTable(
             name = "USER_ROLES",
             joinColumns = @JoinColumn(name = "USER_ID")
     )
-    @Column (name = "ROLES")
+    @Column(name = "ROLES")
     List<String> roles = new ArrayList();
 
+    
     public User()
     {
 
@@ -79,5 +84,17 @@ public class User implements IUser, Serializable
     {
         this.userName = userName;
     }
+
+    public int getId()
+    {
+        return id;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
+    }
+    
+    
 
 }
