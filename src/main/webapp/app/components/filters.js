@@ -18,5 +18,15 @@ angular.module('myApp.filters', []).
                   
                   return input;
               };
+  })
+          .filter("nullFilter", function (){
+              return function (input){
+                  if (input === undefined || input === null || input === ""){
+                      return  "--unknown--";
+                  }
+                  
+                  return input;
+              };
   });
+  
   
