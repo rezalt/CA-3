@@ -3,3 +3,88 @@
   <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
   <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
 </div>
+
+
+<div class="container" style="padding-bottom: 50px; padding-top: 10px">
+    <div class="container col-md-4">
+        <input type="search class=form-control" ng-model="searchInput" placeholder="Search">
+    </div>
+    <div class="col-md-2">
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">{{searchTypeHeading| searchTypePlaceholder}}
+                <span class="caret"></span></button>
+                
+                <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                    <li role="presentation"><a ng-click="setSearchType('search', 'All')" role="menuitem" tabindex="-1" href="#/view3">All</a></li>
+                    <li role="presentation"><a ng-click="setSearchType('vat', 'CVR')" role="menuitem" tabindex="-1" href="#/view3">CVR</a></li>
+                    <li role="presentation"><a ng-click="setSearchType('name', 'Name')" role="menuitem" tabindex="-1" href="#/view3">Name</a></li>
+                    <li role="presentation"><a ng-click="setSearchType('phone', 'Phone')" role="menuitem" tabindex="-1" href="#/view3">Phone</a></li>
+                </ul>
+        </div>
+    </div>
+    
+    <div class="col-md-2">
+        <button class="btn btn-block btn-primary" ng-click="search()">Find</button>
+        
+    </div>
+    
+</div>
+<div class="container">
+    <div class="container" style="overflow: hidden;" ng-show="isPopulated">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Info</th>
+                    <th>VAT</th>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>City</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                    <td><button ng-click="showDetails = showDetails ? false : true"><span class="glyphicon glyphicon glyphicon-menu-down" aria-hidden="true"></span></button></td>
+                    <td>{{resultList.vat}}</td>
+                    <td>{{resultList.name}}</td>
+                    <td>{{resultList.address}}</td>
+                    <td>{{resultList.zipcode}} {{resultList.city}}</td>
+                </tr>
+                <tr ng-model="showDetails" ng-init="" ng-show="showDetails">
+                    <td colspan="5">
+            <uib-tabset active="active">
+                <uib tab-index="0" heading="Info">
+                    <table class="table table-striped">
+                        <tr ng-repeat="(ket, val) in resultList">
+                            <th>{{key}}</th>
+                            <td>{{val|nulFilter}}</td>
+                            
+                        </tr>
+                    </table>
+                </uib-tab>
+                <uib-tab index="1" heading="Production Units">
+                    <div class="container" style="overflow: auto;">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="(key, val) in resultList.productionunits[0]">{{key}}</th>
+                                    
+                                </tr>
+                            </thead>
+                                <tbody>
+                                    <tr ng-repeat="results in resultList.productionunits">
+                                        <td ng-repeat="(key, val) in results">{{val|nulFilter}}</td>
+                                    </tr>
+                                </tbody>
+                        </table>
+                       
+                    </div>
+                </uib-tab>
+            </uib-tabset>
+            
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
