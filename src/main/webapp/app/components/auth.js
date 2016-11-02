@@ -62,6 +62,7 @@ angular.module('myApp.security', [])
                 $http.post('api/demouser/add',$scope.user)
                     .success(function () {
                       //$scope.login($scope.user); // let's login after user creation, remember technical debt.
+                      alert("User created!");
                     })
                     .error(function () {
                       delete $window.sessionStorage.id_token;

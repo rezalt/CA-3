@@ -1,9 +1,4 @@
 <h3>This is the partial for view 3.</h3>
-<div>
-  <p>Data from server (Admins only) <b style="color: darkblue">{{data.message}}</b></p>
-  <p>Server Time: <b style="color: darkblue">{{data.serverTime}}</b></p>
-</div>
-
 
 <div class="container" style="padding-bottom: 50px; padding-top: 10px">
     <div class="container col-md-4">
@@ -43,8 +38,7 @@
             </thead>
             <tbody>
                 <tr>
-                    
-                    <td><button ng-click="showDetails = showDetails ? false : true"><span class="glyphicon glyphicon glyphicon-menu-down" aria-hidden="true"></span></button></td>
+                    <td><button class="btn btn-default" ng-click="showDetails = showDetails ? false : true"><span class="glyphicon glyphicon glyphicon-menu-down" aria-hidden="true"></span></button></td>
                     <td>{{resultList.vat}}</td>
                     <td>{{resultList.name}}</td>
                     <td>{{resultList.address}}</td>
@@ -57,7 +51,7 @@
                     <table class="table table-striped">
                         <tr ng-repeat="(ket, val) in resultList">
                             <th>{{key}}</th>
-                            <td>{{val|nulFilter}}</td>
+                            <td>{{val|nullFilter}}</td>
                             
                         </tr>
                     </table>
@@ -73,7 +67,7 @@
                             </thead>
                                 <tbody>
                                     <tr ng-repeat="results in resultList.productionunits">
-                                        <td ng-repeat="(key, val) in results">{{val|nulFilter}}</td>
+                                        <td ng-repeat="(key, val) in results">{{val|nullFilter}}</td>
                                     </tr>
                                 </tbody>
                         </table>
