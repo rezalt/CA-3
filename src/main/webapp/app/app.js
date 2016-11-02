@@ -26,10 +26,3 @@ config(['$routeProvider', function($routeProvider) {
 config(function ($httpProvider) {
    $httpProvider.interceptors.push('AuthInterceptor');
 });
-
-$(document).ready(function(){
-    //Handles menu drop down
-    $('.dropdown-menu').find('form').click(function (e) {
-        e.stopPropagation();
-    });
-});

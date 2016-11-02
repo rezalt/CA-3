@@ -16,7 +16,6 @@ import javax.ws.rs.core.MediaType;
 import security.PasswordStorage;
 
 @Path("demouser")
-@RolesAllowed("User")
 public class RESTUser {
   
   Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -30,17 +29,13 @@ public class RESTUser {
   
   @POST
   @Path("/add")
-  public String newUser(String user) throws PasswordStorage.CannotPerformOperationException{
-      
+  public void newUser(String user) throws PasswordStorage.CannotPerformOperationException{
       JsonObject addUser = new JsonParser().parse(user).getAsJsonObject();
       entity.User u = new entity.User();
       u.setUserName(addUser.get("username").getAsString());
       u.setPassword(PasswordStorage.createHash(addUser.get("password").getAsString()));
       
-        
-       User usr = uf.addUser(u);
-        
-        return new Gson().toJson(usr);
+      uf.addUser(u);
   }
  
 }
