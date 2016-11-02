@@ -28,3 +28,16 @@ ol.list > li:before {
     content: counter(li-counter);
     counter-increment: li-counter;
 }
+
+body { margin-top:30px; }
+#login-nav input { margin-bottom: 15px; }
+
+  .navbar .navbar-nav {
+        display: inline-block;
+        float: none;
+        vertical-align: top;
+    }
+    
+.navbar .navbar-static-top {
+  text-align: center;
+}

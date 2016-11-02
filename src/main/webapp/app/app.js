@@ -1,5 +1,6 @@
 'use strict';
 
+
 // Declare app level module which depends on views, and components
 angular.module('myApp', [
   'ngRoute',
@@ -20,9 +21,15 @@ angular.module('myApp', [
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/home'});
+  
 }]).
 config(function ($httpProvider) {
    $httpProvider.interceptors.push('AuthInterceptor');
 });
 
-
+$(document).ready(function(){
+    //Handles menu drop down
+    $('.dropdown-menu').find('form').click(function (e) {
+        e.stopPropagation();
+    });
+});

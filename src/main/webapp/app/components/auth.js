@@ -57,6 +57,17 @@ angular.module('myApp.security', [])
                       clearUserDetails($scope);
                     });
           };
+          
+           $scope.signup = function () {
+                $http.post('api/demouser/add',$scope.user)
+                    .success(function () {
+                      //$scope.login($scope.user); // let's login after user creation, remember technical debt.
+                    })
+                    .error(function () {
+                      delete $window.sessionStorage.id_token;
+                      clearUserDetails($scope);
+                    });
+          };
 
           $rootScope.logout = function () {
             $scope.isAuthenticated = false;
