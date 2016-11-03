@@ -3,8 +3,8 @@
   <persistence-unit name="seedPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entity.User</class>
-    <class>entity.ExchangeRates</class>
     <class>entity.SingleExchangeRate</class>
+    <class>entity.ExchangeRates</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://46.101.110.52:3306/PHWTS?zeroDateTimeBehavior=convertToNull"/>
