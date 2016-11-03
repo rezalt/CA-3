@@ -44,10 +44,10 @@ angular.module('myApp.security', [])
                 $http.post('api/login', $scope.user)
                         .success(function (data) {
                           $rootScope.woot = true;
-                            $rootScope.isAuthenticated = true;
                             $window.sessionStorage.id_token = data.token;
                             initializeFromToken($scope, $window.sessionStorage.id_token, jwtHelper);
                             $location.path("/home");
+                            $scope.isAuthenticated = true;
 
                         })
                         .error(function (data) {

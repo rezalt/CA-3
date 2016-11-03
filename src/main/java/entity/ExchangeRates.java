@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlTransient;
  */
 @Entity
 @XmlRootElement
-@NamedQuery(name="ExchangeRates.findByDate", query="SELECT e FROM ExchangeRates e where e.dato = :dato")
+@NamedQuery(name="ExchangeRates.findByDate", query="SELECT e FROM ExchangeRates e where e.date = :date")
 public class ExchangeRates implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package test;
+
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -11,6 +11,7 @@ import static com.jayway.restassured.RestAssured.*;
 import com.jayway.restassured.parsing.Parser;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import org.eclipse.persistence.sessions.server.Server;
 //import org.eclipse.persistence.sessions.server.Server;
 //import org.eclipse.jetty.server.Server;
 import org.junit.After;
