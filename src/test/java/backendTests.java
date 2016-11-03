@@ -71,7 +71,8 @@ public class backendTests
     {
 
     }
-
+    
+    // Tests adding a user.
     @Test
     public void test1()
     {
@@ -83,7 +84,8 @@ public class backendTests
         assertTrue(em.find(User.class, id).getUserName().equals("John"));
     }
 
-    @Test
+    // Tests a wrong user login event
+    @Test 
     public void test2()
     {
         given().
@@ -94,7 +96,7 @@ public class backendTests
                 then().
                 statusCode(401);
     }
-
+    // Tests a correct user login event
     @Test
     public void test3()
     {
