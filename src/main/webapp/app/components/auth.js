@@ -40,15 +40,14 @@ angular.module('myApp.security', [])
 
             clearUserDetails($scope);
               
-            $scope.login = function () {
+            $rootScope.login = function () {
                 $http.post('api/login', $scope.user)
                         .success(function (data) {
                           $rootScope.woot = true;
                             $window.sessionStorage.id_token = data.token;
                             initializeFromToken($scope, $window.sessionStorage.id_token, jwtHelper);
                             $location.path("/home");
-                            $scope.isAuthenticated = true;
-
+                            
                         })
                         .error(function (data) {
                             delete $window.sessionStorage.id_token;
@@ -57,7 +56,7 @@ angular.module('myApp.security', [])
             };
 
             $scope.signup = function () {
-                $http.post('api/demouser/add', $scope.user)
+                $http.post('api/user/add', $scope.user)
                         .success(function () {
                             $scope.login($scope.user); // let's login after user creation, remember technical debt.
                             alert("User created!");

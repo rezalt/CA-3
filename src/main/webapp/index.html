@@ -28,6 +28,7 @@
         <script src="app/view4/view4.js"></script>
         <script src="app/view5/view5.js"></script>
         <script src="app/view6/view6.js"></script>
+        <script src="app/allUsers/allUsers.js"></script>
         <script src="app/view6/login.js"></script>
         <script src="app/components/auth.js"></script>
         <script src="app/components/filters.js"></script>
@@ -56,7 +57,7 @@
                             <li><a ng-show="isUser" href="#/exRI">Exchange Rate Info</a></li>
                             <li><a ng-show="isAdmin" href="#/allUsers">All Users</a></li>
                             <li><a href="#/login">Login Section</a></li>
-
+                                {{woot}}uu{{isAuthenticated}}hh
                             <div class="navbar-right" ng-show="isAuthenticated"> 
                                 <p class="navbar-text">Logged on as: {{username}}</p>
                                 <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout

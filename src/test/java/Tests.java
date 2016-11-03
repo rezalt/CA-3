@@ -11,9 +11,9 @@ import static com.jayway.restassured.RestAssured.*;
 import com.jayway.restassured.parsing.Parser;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import org.eclipse.persistence.sessions.server.Server;
 //import org.eclipse.persistence.sessions.server.Server;
-//import org.eclipse.jetty.server.Server;
+//import org.eclipse.persistence.sessions.server.Server;
+import org.eclipse.jetty.server.Server;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -30,14 +30,14 @@ public class Tests
     
     public Tests()
     {
-        baseURI="http://localhost:8082";
+        baseURI="http://localhost:8089";
         defaultParser = Parser.JSON;
     }
     
     @BeforeClass
     public static void setUpClass() throws Exception
     {
-        server = new Server(8082);
+        server = new Server(8089);
     }
     
     @AfterClass
