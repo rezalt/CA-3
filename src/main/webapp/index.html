@@ -9,8 +9,8 @@
         <title>My Service App</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        
+
+
         <link href="assets/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
         <link rel="stylesheet" href="app/app.css">   
 
@@ -42,8 +42,7 @@
         <script src="app/components/services.js"></script>
 
     </head>
-    <body ng-app="myApp">
-
+    <body>
         <div class="container"  >
             <nav class="navbar navbar-static-top  navbar-default " role="navigation" ng-controller="AppLoginCtrl">
                 <div class="container">
@@ -60,32 +59,31 @@
                         <ul class="nav navbar-nav" style="min-width: 1050px;">
                             <li><a href="#/home">Home</a></li>
                             <li><a href="#/docs">Documentation</a></li>
-                            <li><a href="#/companyInfo">Company Info</a></li>
-                            <li><a href="#/exRI">Exchange Rate Info</a></li>
-                            <li><a href="#/allUsers">All Users</a></li>
+                            <li><a ng-show="isUser" href="#/companyInfo">Company Info</a></li>
+                            <li><a ng-show="isUser" href="#/exRI">Exchange Rate Info</a></li>
+                            <li><a ng-show="isAdmin" href="#/allUsers">All Users</a></li>
                             <li><a href="#/login">Login Section</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
 
+                            <div class="navbar-right" ng-show="isAuthenticated"> 
+                                <p class="navbar-text">Logged on as: {{username}}</p>
+                                <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout
+                                </button>
+                            </div> 
                         </ul>
-                        <!-- /.navbar-collapse -->
-                        <div class="navbar-right" ng-show="isAuthenticated">                
-                            <p class="navbar-text">Logged on as: {{username}}</p>
-                            <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout
-                            </button>
-                        </div>       
                     </div>
                 </div>
             </nav>
-
 
             <div class="container">
                 <hr style="background: lightblue; border:0; height:7px;margin-top: -10px" />
                 <div class="alert alert-danger" role="alert" ng-show="error">{{error}}</div>
                 <div ng-view></div>
-
+                
             </div>
         </div>
+        
+        
+        
 
         <script type="text/ng-template" id="errorModal.html">
             <div class="modal-header">
@@ -98,6 +96,5 @@
             <button class="btn btn-primary" type="button" ng-click="ok()" autofocus>OK</button>
             </div>
         </script>
-
     </body>
 </html>
