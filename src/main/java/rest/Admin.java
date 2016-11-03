@@ -17,7 +17,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 @Path("admin")
-@RolesAllowed("Admin")
 public class Admin {
     
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();

@@ -24,7 +24,7 @@ angular.module('myApp.allUsers', ['ngRoute'])
 
             self.deleteUser = function (data) {
                 $http({
-                    method: 'PUT',
+                    method: 'DELETE',
                     url: "api/admin/user",
                     data: {userName: data}
                 });
