@@ -57,7 +57,8 @@
                             <li><a ng-show="isUser" href="#/exRI">Exchange Rate Info</a></li>
                             <li><a ng-show="isAdmin" href="#/allUsers">All Users</a></li>
                             <li><a href="#/login">Login Section</a></li>
-                                {{woot}}uu{{isAuthenticated}}hh
+                    
+                                user:{{isUser}} admin:{{isAdmin}}hh
                             <div class="navbar-right" ng-show="isAuthenticated"> 
                                 <p class="navbar-text">Logged on as: {{username}}</p>
                                 <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout
