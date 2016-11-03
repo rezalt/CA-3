@@ -12,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import security.PasswordStorage;
 
-@Path("demouser")
+@Path("user")
 public class RESTUser {
   
   Gson gson = new GsonBuilder().setPrettyPrinting().create();
