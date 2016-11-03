@@ -8,7 +8,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
+import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
@@ -28,8 +30,19 @@ public class Admin {
   {
       
       List<User> list = uf.getUsers();
-      return Response.status(Response.Status.ACCEPTED).entity(gson.toJson(list)).build();
+      return Response.status(Response.Status.OK).entity(gson.toJson(list)).build();
       
+  }
+  
+  @PUT
+  @Path("/user")
+  @Consumes(MediaType.APPLICATION_JSON)
+  @Produces(MediaType.APPLICATION_JSON)
+  public Response deleteUser(String user)
+  {
+      User u = gson.fromJson(user, User.class);
+      uf.deleteUser(u.getUserName());
+      return Response.status(Response.Status.OK).entity(gson.toJson(u)).build();
   }
  
 }

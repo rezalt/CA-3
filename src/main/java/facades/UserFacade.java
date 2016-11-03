@@ -103,6 +103,15 @@ public class UserFacade implements IUserFacade
         }
 
     }
+    
+    public void deleteUser(String userName)
+    {
+        EntityManager em = getEntityManager();
+        User u = em.find(User.class, userName);
+        em.getTransaction().begin();
+        em.remove(u);
+        em.getTransaction().commit(); 
+    }
 
     /*
   Return the Roles if users could be authenticated, otherwise null
