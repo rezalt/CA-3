@@ -4,42 +4,43 @@
  * and open the template in the editor.
  */
 package entity;
-
 import java.io.Serializable;
+import java.sql.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.persistence.ManyToOne;
+
 
 /**
  *
  * @author josephawwal
  */
 @Entity
-@XmlRootElement
-public class SingleExchangeRate implements Serializable {
+public class DailyRate implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String currencyCode;
-    private String description;
-    private String rate;
     
-    public SingleExchangeRate(){
+    private java.sql.Date dateField;
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    private Currency currency;
+    
+    private float value;
+    
+    public DailyRate(){
         
     }
     
-    public SingleExchangeRate(String currencyCode, String desc, String rate){
-        this.currencyCode = currencyCode;
-        this.description = desc;
-        this.rate = rate;
+    public DailyRate(Date dateField, Currency currency, float value){
+        this.dateField = dateField;
+        this.currency = currency;
+        this.value = value;
     }
-    
-    
-
     public Long getId() {
         return id;
     }
@@ -58,10 +59,10 @@ public class SingleExchangeRate implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof SingleExchangeRate)) {
+        if (!(object instanceof DailyRate)) {
             return false;
         }
-        SingleExchangeRate other = (SingleExchangeRate) object;
+        DailyRate other = (DailyRate) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -70,31 +71,32 @@ public class SingleExchangeRate implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.SingleExchangeRate[ id=" + id + " ]";
+        return "entity.DailyRate[ id=" + id + " ]";
+    }
+
+    public Date getDateField() {
+        return dateField;
+    }
+
+    public void setDateField(Date dateField) {
+        this.dateField = dateField;
+    }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
     }
     
-    public String getCurrencyCode(){
-        return currencyCode;
-    }
-    
-    public void setCurrencyCode(String currencyCode){
-        this.currencyCode = currencyCode;
-    }
-    
-    public String getDesc(){
-        return description;
-    }
-    public void setDescription(String desc){
-        this.description = desc;
-    }
-    
-    public String getRate(){
-        return rate;
-    }
-    
-    public void setRate(String rate){
-        
-        this.rate = rate;
-    }
     
 }
