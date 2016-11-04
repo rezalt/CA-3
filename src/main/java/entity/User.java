@@ -17,13 +17,11 @@ public class User implements IUser, Serializable
 {
 
     @Id
-    @javax.persistence.GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
     private String userName;
 
     private String password;  //Pleeeeease dont store me in plain text
 
+    
     @ElementCollection
     @CollectionTable(
             name = "USER_ROLES",
@@ -84,17 +82,6 @@ public class User implements IUser, Serializable
     {
         this.userName = userName;
     }
-
-    public int getId()
-    {
-        return id;
-    }
-
-    public void setId(int id)
-    {
-        this.id = id;
-    }
-    
     
 
 }

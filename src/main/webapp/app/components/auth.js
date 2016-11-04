@@ -39,15 +39,26 @@ angular.module('myApp.security', [])
             });
 
             clearUserDetails($scope);
-              
-            $rootScope.login = function () {
+
+            $scope.signup = function () {
+                $http.post('api/user/add', $scope.user)
+                        .success(function () {
+                            alert("User created!");
+                            $scope.login($scope.user); // let's login after user creation, remember technical debt.
+                        })
+                        .error(function () {
+                            delete $window.sessionStorage.id_token;
+                            clearUserDetails($scope);
+                        });
+            };
+
+            $scope.login = function () {
                 $http.post('api/login', $scope.user)
                         .success(function (data) {
-                          $rootScope.woot = true;
                             $window.sessionStorage.id_token = data.token;
                             initializeFromToken($scope, $window.sessionStorage.id_token, jwtHelper);
                             $location.path("/home");
-                            
+
                         })
                         .error(function (data) {
                             delete $window.sessionStorage.id_token;
@@ -55,17 +66,6 @@ angular.module('myApp.security', [])
                         });
             };
 
-            $scope.signup = function () {
-                $http.post('api/user/add', $scope.user)
-                        .success(function () {
-                            $scope.login($scope.user); // let's login after user creation, remember technical debt.
-                            alert("User created!");
-                        })
-                        .error(function () {
-                            delete $window.sessionStorage.id_token;
-                            clearUserDetails($scope);
-                        });
-            };
 
             $rootScope.logout = function () {
                 $scope.isAuthenticated = false;
@@ -133,11 +133,11 @@ function initializeFromToken($scope, token, jwtHelper) {
     $scope.isAdmin = false;
     $scope.isUser = false;
     tokenPayload.roles.forEach(function (role) {
-        if (role === "Admin") {
-            $scope.isAdmin = true;
-        }
         if (role === "User") {
             $scope.isUser = true;
+        }
+        if (role === "Admin") {
+            $scope.isAdmin = true;
         }
     });
 }

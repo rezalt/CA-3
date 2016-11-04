@@ -73,16 +73,16 @@ public class backendTests
     }
     
     // Tests adding a user.
-    @Test
-    public void test1()
-    {
-        EntityManager em = emf.createEntityManager();
-        UserFacade uf = (UserFacade) security.UserFacadeFactory.getInstance();
-        User usr1 = new User("John", "Arne");
-        uf.addUser(usr1);
-        int id = usr1.getId();
-        assertTrue(em.find(User.class, id).getUserName().equals("John"));
-    }
+//    @Test
+//    public void test1()
+//    {
+//        EntityManager em = emf.createEntityManager();
+//        UserFacade uf = (UserFacade) security.UserFacadeFactory.getInstance();
+//        User usr1 = new User("John", "Arne");
+//        uf.addUser(usr1);
+//        int id = usr1.getId();
+//        assertTrue(em.find(User.class, id).getUserName().equals("John"));
+//    }
 
     // Tests a wrong user login event
     @Test 
