@@ -20,7 +20,7 @@ public class UserFacade implements IUserFacade
     IUser interface, then security should work "out of the box" with users and roles stored in your database */
     public UserFacade()
     {
-    
+
     }
 
     @Override
@@ -36,7 +36,7 @@ public class UserFacade implements IUserFacade
         return user;
 
     }
-    
+
     public List<User> getUsers()
     {
         EntityManager em = getEntityManager();
@@ -69,14 +69,24 @@ public class UserFacade implements IUserFacade
         }
 
     }
-    
+
     public void deleteUser(String userName)
     {
         EntityManager em = getEntityManager();
-        User u = em.find(User.class, userName);
-        em.getTransaction().begin();
-        em.remove(u);
-        em.getTransaction().commit(); 
+        try
+        {
+            em.getTransaction().begin();
+            em.remove(em.find(User.class, userName));
+            em.getTransaction().commit();
+        }
+        catch (Exception ex)
+        {
+            em.getTransaction().rollback();
+        }
+        finally
+        {
+            em.close();
+        }
     }
 
     /*

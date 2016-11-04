@@ -1,4 +1,4 @@
-<div ng-controller="AllUsers as ctrl">
+<div>
     <h1>All Users</h1>
     <table class="col-md-4" ng-show="ctrl.usersFound">
         <thead>
@@ -8,7 +8,6 @@
             </tr>
         </thead>
         <tbody>
-
             <tr ng-repeat="user in ctrl.users">
                 <td>{{user.userName}}</td>
                 <td><button class="btn btn-danger" ng-click="ctrl.deleteUser(user.userName)">Delete user</button></td>

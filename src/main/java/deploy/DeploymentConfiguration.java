@@ -15,7 +15,7 @@ import javax.servlet.ServletContextListener;
 public class DeploymentConfiguration implements ServletContextListener {
     
     
-    public static String PU_NAME = "pu_dev";
+    public static String PU_NAME = "seedPU";
     
     
     @Override
@@ -24,11 +24,11 @@ public class DeploymentConfiguration implements ServletContextListener {
     }
     
     public static void setTestModeOn(){
-        PU_NAME = "pu_test";
+        PU_NAME = "seedPU";
     }
     
     public static void setDevModeOn(){
-        PU_NAME = "pu_dev";
+        PU_NAME = "seedPu";
     }
 
     @Override
