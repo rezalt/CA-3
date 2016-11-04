@@ -125,7 +125,7 @@ public class UserFacade implements IUserFacade
     {
         if (emf == null)
         {
-            emf = Persistence.createEntityManagerFactory("seedPU");
+            emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
         }
         return emf.createEntityManager();
     }

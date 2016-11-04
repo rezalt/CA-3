@@ -16,12 +16,12 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.junit.After;
 import org.junit.AfterClass;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import rest.ApplicationConfig;
 import entity.User;
-import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -31,13 +31,16 @@ public class backendTests
 {
 
     static Server server;
-    public EntityManagerFactory emf = Persistence.createEntityManagerFactory("seedPU");
+    public EntityManagerFactory emf;
 
     public backendTests()
     {
         baseURI = "http://localhost:8089";
         defaultParser = Parser.JSON;
         basePath = "/api";
+
+        deploy.DeploymentConfiguration.setTestModeOn();
+        emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
     }
 
     @BeforeClass
@@ -71,21 +74,25 @@ public class backendTests
     {
 
     }
-    
+
     // Tests adding a user.
-//    @Test
-//    public void test1()
-//    {
-//        EntityManager em = emf.createEntityManager();
-//        UserFacade uf = (UserFacade) security.UserFacadeFactory.getInstance();
-//        User usr1 = new User("John", "Arne");
-//        uf.addUser(usr1);
-//        int id = usr1.getId();
-//        assertTrue(em.find(User.class, id).getUserName().equals("John"));
-//    }
+    @Test
+    public void test1()
+    {
+
+        EntityManager em = emf.createEntityManager();
+        UserFacade uf = (UserFacade) security.UserFacadeFactory.getInstance();
+        uf.deleteUser("to");
+        User usr1 = new User("to", "Test");
+        uf.addUser(usr1);
+        String username = usr1.getUserName();
+        User usr2 = em.find(User.class, username);
+        System.out.println("AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!");
+        assertTrue(usr2.getUserName().equals("to"));
+    }
 
     // Tests a wrong user login event
-    @Test 
+    @Test
     public void test2()
     {
         given().
@@ -96,15 +103,18 @@ public class backendTests
                 then().
                 statusCode(401);
     }
+
     // Tests a correct user login event
     @Test
     public void test3()
     {
+      deploy.DeploymentConfiguration.setDevModeOn();
+        emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
         given().
                 contentType("application/json").
                 body("{'username':'user','password':'test'}").
                 when().
-                post("/login").
+                get("/login").
                 then().
                 statusCode(200);
     }

@@ -10,5 +10,6 @@ public class Structure
         HashMap<String, Object> puproperties = new HashMap();
          
         Persistence.generateSchema("seedPU", null);
+        Persistence.generateSchema("testPU", null);
     }
 }

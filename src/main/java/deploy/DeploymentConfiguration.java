@@ -12,30 +12,30 @@ import javax.servlet.ServletContextListener;
  *
  * @author josephawwal
  */
-public class DeploymentConfiguration implements ServletContextListener {
+public class DeploymentConfiguration {
     
     
     public static String PU_NAME = "seedPU";
     
-    
+    /*
     @Override
     public void contextDestroyed(ServletContextEvent sce){
         
-    }
+    }*/
     
     public static void setTestModeOn(){
-        PU_NAME = "seedPU";
+        PU_NAME = "testPU";
     }
     
     public static void setDevModeOn(){
-        PU_NAME = "seedPu";
+        PU_NAME = "seedPU";
     }
-
+/*
     @Override
     public void contextInitialized(ServletContextEvent sce) {
           Map<String, String> env = System.getenv();
         if (env.keySet().contains("OPENSHIFT_MYSQL_DB_HOST")){
             PU_NAME = "pu_openshift";
         }
-    }
+    } */
 }

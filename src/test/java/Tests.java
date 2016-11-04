@@ -26,12 +26,14 @@ import org.junit.BeforeClass;
 public class Tests
 {
     static Server server;
-    public EntityManagerFactory emf = Persistence.createEntityManagerFactory("seedPU");
+    public EntityManagerFactory emf;
     
     public Tests()
     {
         baseURI="http://localhost:8089";
         defaultParser = Parser.JSON;
+        deploy.DeploymentConfiguration.setTestModeOn();
+     emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
     }
     
     @BeforeClass
