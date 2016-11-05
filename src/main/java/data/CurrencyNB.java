@@ -99,6 +99,7 @@ public class CurrencyNB extends DefaultHandler implements Runnable {
     @Override
     public void run() {
         try {
+            System.out.println("Woot");
             XMLReader xr = XMLReaderFactory.createXMLReader();
             xr.setContentHandler(this);
             URL url = new URL("http://www.nationalbanken.dk/_vti_bin/DN/DataService.svc/CurrencyRatesXML?lang=en");
