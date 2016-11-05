@@ -15,6 +15,7 @@ import javax.servlet.ServletContextListener;
  *
  * @author josephawwal
  */
+
 public class TimerStarter implements ServletContextListener
 {
 
@@ -29,7 +30,7 @@ public class TimerStarter implements ServletContextListener
     public void contextInitialized(ServletContextEvent event)
     {
         scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new CurrencyNB(), 0, 1, TimeUnit.DAYS);
+        scheduler.scheduleAtFixedRate(new CurrencyNB(), 0, 3, TimeUnit.SECONDS);
     }
 
     @Override

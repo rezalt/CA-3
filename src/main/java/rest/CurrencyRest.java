@@ -17,34 +17,26 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+
 /**
  *
  * @author josephawwal
  */
 @RolesAllowed("User")
-@Path("currency/dailyrates")
-@Consumes(MediaType.APPLICATION_JSON)
-@Produces(MediaType.APPLICATION_JSON)
-
-public class CurrencyRest {
-    
-    
-    @Context
-    private UriInfo context;
-    private CurrencyFacade cf = new CurrencyFacade();
-    
-    public CurrencyRest(){
-        
-    }
+@Path("currency")
+public class CurrencyRest
+{
     
     @GET
+    @Path("/dailyrates")
     @Produces(MediaType.APPLICATION_JSON)
-    public Object getDailyRates(){
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Object getDailyRates()
+    {
+        CurrencyFacade cf = new CurrencyFacade();
         List<DailyRate> rates = cf.getDailyRates();
-        Gson gson = new Gson();
         return new Gson().toJson(rates);
-        
+
     }
-    
-    
+
 }
