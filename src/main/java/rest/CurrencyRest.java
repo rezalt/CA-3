@@ -35,8 +35,7 @@ public class CurrencyRest
     public Response getDailyRates()
     {
         CurrencyFacade cf = new CurrencyFacade();
-        Date date = new Date();
-        List<Currency> rates = cf.getDailyRates(date);
+        List<Currency> rates = cf.getDailyRates();
         return Response.status(Response.Status.OK).entity(gson.toJson(rates)).build();
     }
     

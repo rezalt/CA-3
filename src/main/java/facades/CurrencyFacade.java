@@ -47,19 +47,18 @@ public class CurrencyFacade
     {
         this.emf = emf;
     }
-    
 
-    public List<Currency> getDailyRates(Date date)
+    public List<Currency> getDailyRates()
     {
         EntityManager em = getEntityManager();
         List<Currency> rates = new ArrayList<>();
         try
-        {   
+        {
             em.getTransaction().begin();
-            Query query = em.createQuery("SELECT u from Currency u WHERE u.dates =:date"); //SELECT e FROM rate E
+            Query query = em.createQuery("SELECT u from Currency u");
             rates = query.getResultList();
             em.getTransaction().commit();
-           return rates;
+            return rates;
         }
         finally
         {
