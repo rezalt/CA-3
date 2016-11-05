@@ -38,5 +38,13 @@ public class CurrencyRest
         return new Gson().toJson(rates);
 
     }
+    
+    @GET
+    @Path("/calculator/{amount}/{fromcurrency}/{tocurrency}")
+    @Consumes(MediaType.APPLICATION_XML)
+    public String returnCalculatedAmount(){
+        return null;
+    }
+    
 
 }
