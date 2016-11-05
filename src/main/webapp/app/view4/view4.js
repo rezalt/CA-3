@@ -12,7 +12,6 @@ angular.module('myApp.view4', ['ngRoute'])
 
         .controller('Currency', function ($http, $rootScope) {
             var self = this;
-            self.currenciesFound = false;
             self.currencies = [];
             $http.get("api/currency/dailyrates")
                     .success(function (data) {

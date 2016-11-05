@@ -10,12 +10,13 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 /**
  *
  * @author josephawwal
  */
-
+@WebListener
 public class TimerStarter implements ServletContextListener
 {
 
@@ -30,7 +31,7 @@ public class TimerStarter implements ServletContextListener
     public void contextInitialized(ServletContextEvent event)
     {
         scheduler = Executors.newSingleThreadScheduledExecutor();
-        scheduler.scheduleAtFixedRate(new CurrencyNB(), 0, 3, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new CurrencyNB(), 0, 1, TimeUnit.DAYS);
     }
 
     @Override

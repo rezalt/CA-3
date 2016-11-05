@@ -6,63 +6,69 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
-import javax.persistence.CascadeType;
-import javax.persistence.ElementCollection;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 /**
  *
  * @author josephawwal
  */
 @Entity
-public class Currency implements Serializable {
+public class Currency implements Serializable
+{
+
+    public Currency()
+    {
+    }
 
     @Id
     private String currencyCode;
+    private String description;
+    private double rate;
 
-    private String name;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    Date dates;
 
-    @ElementCollection
-    @OneToMany(mappedBy = "currency", cascade = CascadeType.PERSIST)
-    private List<DailyRate> dailyRates;
-
-    public Currency() {
-
+    public Date getDate()
+    {
+        return dates;
     }
 
-    public Currency(String code, String name) {
-        this.currencyCode = code;
-        this.name = name;
-
+    public void setDate(Date date)
+    {
+        this.dates = date;
     }
 
-    public String getCurrencyCode() {
+    public String getDescription()
+    {
+        return description;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public String getCurrencyCode()
+    {
         return currencyCode;
-
     }
 
-public void setCurrencyCode(String code){
-    this.currencyCode = code;
-}
+    public double getRate()
+    {
+        return rate;
+    }
 
-public String getName(){
-    return name;
-}
+    public void setCurrencyCode(String currencyCode)
+    {
+        this.currencyCode = currencyCode;
+    }
 
-public void setName(String name){
-    this.name = name;
-}
-public List<DailyRate> getDailyRates(){
-    return dailyRates;
-}
-public void setDailyRates(List<DailyRate> dailyRates){
-    this.dailyRates = dailyRates;
-}
-public void addDailyRate(DailyRate dailyRate){
-    dailyRate.setCurrency(this);
-    dailyRates.add(dailyRate);
-}
+    public void setRate(double rate)
+    {
+        this.rate = rate;
+    }
+
 }

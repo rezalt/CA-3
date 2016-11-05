@@ -13,55 +13,55 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.After;
 
-/**
- *
- * @author josephawwal
- */
-public class CurrencyFacadeTest {
-    
-    private CurrencyFacade facade;
-    Thread t;
-    
-    
-    
-    public CurrencyFacadeTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-        DeploymentConfiguration.setTestModeOn();
-        
-    }
-    
-    
-    
-    @Before
-    public void setUp() throws InterruptedException {
-        
-        facade = new CurrencyFacade();
-        t = new Thread(new CurrencyNB());
-        t.start();
-        t.sleep(400);
-        
-    }
-    
-    
-    @After
-    public void tearDown() {
-        t.interrupt();
-    
-    }
-    
-    
-    @Test
-    public void testGetDailyRates(){
-        int size = facade.getDailyRates().size();
-        assertEquals(33, size);
-    }
+///**
+// *
+// * @author josephawwal
+// */
+//public class CurrencyFacadeTest {
+//    
+//    private CurrencyFacade facade;
+//    Thread t;
+//    
+//    
+//    
+//    public CurrencyFacadeTest() {
+//    }
+//    
+//    @BeforeClass
+//    public static void setUpClass() {
+//        DeploymentConfiguration.setTestModeOn();
+//        
+//    }
+//    
+//    
+//    
+//    @Before
+//    public void setUp() throws InterruptedException {
+//        
+//        facade = new CurrencyFacade();
+//        t = new Thread(new CurrencyNB());
+//        t.start();
+//        t.sleep(400);
+//        
+//    }
+//    
+//    
+//    @After
+//    public void tearDown() {
+//        t.interrupt();
+//    
+//    }
+//    
+//    
+//    @Test
+//    public void testGetDailyRates(){
+//        int size = facade.getDailyRates().size();
+//        assertEquals(33, size);
+//    }
 
     // TODO add test methods here.
     // The methods must be annotated with annotation @Test. For example:
     //
     // @Test
     // public void hello() {}
-}
+//}

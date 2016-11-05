@@ -5,13 +5,14 @@
  */
 package entity;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
 
 
 /**
@@ -26,11 +27,12 @@ public class DailyRate implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    private java.sql.Date dateField;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateField;
     @ManyToOne(cascade = CascadeType.PERSIST)
     private Currency currency;
     
-    private float value;
+    private float valuen;
     
     public DailyRate(){
         
@@ -39,7 +41,7 @@ public class DailyRate implements Serializable {
     public DailyRate(Date dateField, Currency currency, float value){
         this.dateField = dateField;
         this.currency = currency;
-        this.value = value;
+        this.valuen = value;
     }
     public Long getId() {
         return id;
@@ -91,11 +93,11 @@ public class DailyRate implements Serializable {
     }
 
     public float getValue() {
-        return value;
+        return valuen;
     }
 
     public void setValue(float value) {
-        this.value = value;
+        this.valuen = value;
     }
     
     

@@ -13,7 +13,7 @@ angular.module('myApp.allUsers', ['ngRoute'])
 
         .controller('AllUsers', function ($http, $rootScope) {
             var self = this;
-            self.currencies = [];
+            self.users = [];
             $http.get("api/admin/users")
                     .success(function (data) {
                         self.users = data;

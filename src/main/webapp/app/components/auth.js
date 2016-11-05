@@ -58,6 +58,7 @@ angular.module('myApp.security', [])
                             $window.sessionStorage.id_token = data.token;
                             initializeFromToken($scope, $window.sessionStorage.id_token, jwtHelper);
                             $location.path("/home");
+                            window.location.reload();
                         })
                         .error(function (data) {
                             delete $window.sessionStorage.id_token;

@@ -6,8 +6,10 @@
 package rest;
 
 import com.google.gson.Gson;
+import entity.Currency;
 import entity.DailyRate;
 import facades.CurrencyFacade;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
@@ -34,9 +36,9 @@ public class CurrencyRest
     public Object getDailyRates()
     {
         CurrencyFacade cf = new CurrencyFacade();
-        List<DailyRate> rates = cf.getDailyRates();
+        Date date = new Date();
+        List<Currency> rates = cf.getDailyRates(date);
         return new Gson().toJson(rates);
-
     }
     
     @GET
