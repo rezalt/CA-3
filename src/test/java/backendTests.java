@@ -87,7 +87,6 @@ public class backendTests
         uf.addUser(usr1);
         String username = usr1.getUserName();
         User usr2 = em.find(User.class, username);
-        System.out.println("AAAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHH!!!!!!!!!!!!!!!");
         assertTrue(usr2.getUserName().equals("to"));
     }
 

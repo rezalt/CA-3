@@ -4,33 +4,38 @@
  * and open the template in the editor.
  */
 package data;
-import java.util.TimerTask;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
+
 /**
  *
  * @author josephawwal
  */
-public class TimerStarter extends TimerTask {
+public class TimerStarter implements ServletContextListener
+{
+
+    private ScheduledExecutorService scheduler;
+
+    public TimerStarter()
+    {
+        scheduler = Executors.newScheduledThreadPool(1);
+    }
 
     @Override
-    public void run() {
-        
-        while(true){
-            
-            Thread t1 = new Thread(new CurrencyNB());
-            t1.start();
-            
-            try {
-                t1.wait(86400000);
-            }
-            catch(InterruptedException ex){
-                new Thread(new TimerStarter()).start();
-                
-            }
-        }
+    public void contextInitialized(ServletContextEvent event)
+    {
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        scheduler.scheduleAtFixedRate(new CurrencyNB(), 0, 1, TimeUnit.DAYS);
     }
-    
-    
-    
+
+    @Override
+    public void contextDestroyed(ServletContextEvent event)
+    {
+        scheduler.shutdownNow();
+    }
+
 }
