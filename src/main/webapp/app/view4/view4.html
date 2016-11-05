@@ -15,7 +15,7 @@
             <tr style="border-bottom-style: ridge; border-width:thin " ng-repeat="currency in ctrl.currencies| filter: currencyfilter | orderBy:predicate:reverse">
                 <td>{{currency.currencyCode}}</td>
                 <td>{{currency.description}}</td>
-                <td>{{currency.rate}}</td>
+                <td>{{currency.rate | setDecimal:2}}</td>
             </tr>
         </tbody>
     </table>

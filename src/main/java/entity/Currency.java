@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
@@ -26,6 +27,7 @@ public class Currency implements Serializable
     @Id
     private String currencyCode;
     private String description;
+    @Column(columnDefinition = "DECIMAL(7,2)")
     private double rate;
 
     @Temporal(javax.persistence.TemporalType.DATE)

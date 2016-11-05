@@ -9,8 +9,8 @@
         <title>My Service App</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="app/app.css">   
-        <link href="assets/bootstrap/bootstrap.css" rel="stylesheet" type="text/css"/>
+
+        <link href="assets/bootstrap/bootstrap.css" rel="stylesheet">
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -38,36 +38,40 @@
     </head>
     <body>
         <div class="container"  >
-            <nav class="navbar navbar-static-top  navbar-default " role="navigation" ng-controller="AppLoginCtrl">
-                <div class="container">
+            <nav class="navbar navbar-default" role="navigation" ng-controller="AppLoginCtrl">
+                <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                             <span class="sr-only">Toggle navigation</span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">{{title}}</a>
+                        <a class="navbar-brand" href="#/home">Home</a>
                     </div>
-                    <div id="navbar" class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav" style="min-width: 1050px;">
-                            <li><a href="#/home">Home</a></li>
-                            <li><a href="#/docs">Documentation</a></li>
-                            <li><a ng-show="isUser" href="#/companyInfo">Company Info</a></li>
-                            <li><a ng-show="isUser" href="#/exRI">Exchange Rate Info</a></li>
-                            <li><a ng-show="isAdmin" href="#/allUsers">All Users</a></li>
-                            <li><a href="#/login">Login Section</a></li>
-                    
-                                user:{{isUser}} admin:{{isAdmin}}
+
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">                  
+                            <li class=""><a href="#/docs" >Documentation</a></li>
+                            <li class=""><a ng-show="isUser" href="#/companyInfo" >Company Info</a></li>
+                            <li class=""><a ng-show="isUser" href="#/exRI" >Exchange Rate Info</a></li>
+                            <li class=""><a ng-show="isAdmin" href="#/allUsers" >All Users</a></li>
+                            <li class=""><a href="#/login">Login Section</a></li>
+
                             <div class="navbar-right" ng-show="isAuthenticated"> 
                                 <p class="navbar-text">Logged on as: {{username}}</p>
                                 <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout
                                 </button>
                             </div> 
+                            </li>
                         </ul>
                     </div>
                 </div>
             </nav>
+
+
+
 
             <div class="container">
                 <hr style="background: lightblue; border:0; height:7px;margin-top: -10px" />

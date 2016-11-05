@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.xml.sax.*;
 import org.xml.sax.helpers.*;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -57,6 +58,7 @@ public class CurrencyNB extends DefaultHandler implements Runnable
     @Override
     public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException
     {
+      
         if (count == 1)
         { //get date
             for (int i = 0; i < attributes.getLength(); i++)

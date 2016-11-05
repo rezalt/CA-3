@@ -22,11 +22,7 @@ public class TimerStarter implements ServletContextListener
 
     private ScheduledExecutorService scheduler;
 
-    public TimerStarter()
-    {
-        scheduler = Executors.newScheduledThreadPool(1);
-    }
-
+ 
     @Override
     public void contextInitialized(ServletContextEvent event)
     {
