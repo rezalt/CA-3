@@ -59,7 +59,7 @@ public class CurrencyFacade
             Query query = em.createQuery("SELECT u from Currency u WHERE u.dates =:date"); //SELECT e FROM rate E
             rates = query.getResultList();
             em.getTransaction().commit();
-            return rates;
+           return rates;
         }
         finally
         {

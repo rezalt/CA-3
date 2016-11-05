@@ -24,7 +24,6 @@ import javax.ws.rs.core.Response;
  * @author josephawwal
  */
 @Path("currency")
-@RolesAllowed("User")
 public class CurrencyRest
 {
     private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
