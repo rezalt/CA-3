@@ -58,12 +58,13 @@
                             <li class=""><a ng-show="isUser" href="#/exRI" >Exchange Rate Info</a></li>
                             <li class=""><a ng-show="isAdmin" href="#/allUsers" >All Users</a></li>
                             <li class=""><a href="#/login">Login Section</a></li>
-
-                            <div class="navbar-right" ng-show="isAuthenticated"> 
-                                <p class="navbar-text">Logged on as: {{username}}</p>
-                                <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout
-                                </button>
-                            </div> 
+                            <li class="">
+                                <div class="navbar-right" ng-show="isAuthenticated"> 
+                                    <p class="navbar-text">Logged on as: {{username}}</p>
+                                    <button type="submit" class="btn btn-primary navbar-btn"  ng-click="logout()">Logout
+                                    </button>
+                                </div> 
+                            </li>
                             </li>
                         </ul>
                     </div>

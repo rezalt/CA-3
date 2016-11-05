@@ -10,7 +10,22 @@ angular.module('myApp.allUsers', ['ngRoute'])
                     controllerAs: "ctrl"
                 });
             }])
-
+        
+        .directive('ngConfirmClick', [
+            function () {
+                return {
+                    link: function (scope, element, attr) {
+                        var msg = attr.ngConfirmClick || "Are you sure?";
+                        var clickAction = attr.confirmedClick;
+                        element.bind('click', function (event) {
+                            if (window.confirm(msg)) {
+                                scope.$eval(clickAction);
+                            }
+                        });
+                    }
+                };
+            }])
+        
         .controller('AllUsers', function ($http, $rootScope) {
             var self = this;
             self.users = [];
@@ -30,6 +45,8 @@ angular.module('myApp.allUsers', ['ngRoute'])
                     $rootScope.error = data.error + data.message;
                 });
             };
+
+
 
             self.deleteUser = function (data) {
                 $http({
