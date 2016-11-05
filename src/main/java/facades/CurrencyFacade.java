@@ -6,7 +6,7 @@
 package facades;
 
 import entity.Currency;
-import entity.DailyRate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -47,22 +47,18 @@ public class CurrencyFacade
     {
         this.emf = emf;
     }
+    
 
     public List<Currency> getDailyRates(Date date)
     {
         EntityManager em = getEntityManager();
+        List<Currency> rates = new ArrayList<>();
         try
-        {
+        {   
+            em.getTransaction().begin();
             Query query = em.createQuery("SELECT u from Currency u WHERE u.dates =:date"); //SELECT e FROM rate E
-            List<Currency> rates = query.getResultList();
-            if (rates != null)
-            {
-                System.out.println("Rates:" + rates.size());
-            }
-            else
-            {
-                System.out.println("null");
-            }
+            rates = query.getResultList();
+            em.getTransaction().commit();
             return rates;
         }
         finally
@@ -71,12 +67,12 @@ public class CurrencyFacade
         }
     }
 
-    public DailyRate getRateByCurrency(String currency)
+    public Currency getRateByCurrency(String currency)
     {
         EntityManager em = getEntityManager();
         try
         {
-            return em.find(DailyRate.class, currency);
+            return em.find(Currency.class, currency);
 
         }
         finally

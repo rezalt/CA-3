@@ -6,47 +6,47 @@
 package rest;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import entity.Currency;
-import entity.DailyRate;
 import facades.CurrencyFacade;
 import java.util.Date;
 import java.util.List;
 import javax.annotation.security.RolesAllowed;
 import javax.ws.rs.Consumes;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  *
  * @author josephawwal
  */
-@RolesAllowed("User")
 @Path("currency")
+@RolesAllowed("User")
 public class CurrencyRest
 {
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
     
     @GET
     @Path("/dailyrates")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    public Object getDailyRates()
+    public Response getDailyRates()
     {
         CurrencyFacade cf = new CurrencyFacade();
         Date date = new Date();
         List<Currency> rates = cf.getDailyRates(date);
-        return new Gson().toJson(rates);
+        return Response.status(Response.Status.OK).entity(gson.toJson(rates)).build();
     }
     
-    @GET
-    @Path("/calculator/{amount}/{fromcurrency}/{tocurrency}")
-    @Consumes(MediaType.APPLICATION_XML)
-    public String returnCalculatedAmount(){
-        return null;
-    }
+//    @GET
+//    @Path("/calculator/{amount}/{fromcurrency}/{tocurrency}")
+//    @Consumes(MediaType.APPLICATION_XML)
+//    public String returnCalculatedAmount(){
+//        return null;
+//    }
     
 
 }
