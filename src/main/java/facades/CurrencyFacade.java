@@ -18,6 +18,9 @@ public class CurrencyFacade {
     
     EntityManagerFactory emf;
     
+    public CurrencyFacade(){
+        
+    }
     
     public CurrencyFacade(EntityManagerFactory emf){
         this.emf = emf;
