@@ -1,1 +1,9 @@
-teststrats
+Den første test: testCreateUser, tester at en bruger kan oprettes og tilføjes til userFacade.<br> Den findes ved at benytte entity managerenog sammenlignes derefter med det oprindeligt givne navn.
+<br><br>
+Den anden test: testDeleteUser, tester at den bruger der var oprettet i forhenværende test bliver slettet.
+<br><br>
+Den tredje test: testFailedLogin, tester at vi får statuskoden 401 når vi indtaster en ugyldig bruger.<br> I denne test tester vi på en lokal database, og udføres ved REST ASSURED testing.
+<br><br>
+Den fjerde test: testAlterUser, tester at vores alterUser funktion i userfacaden sletter og opretter givne bruger.
+<br><br>
+Den femte test: testSuccesfulLogin, tester at vi kan logge ind med test brugeren, og at vi får den forventede 200 statuskode tilbage.<br> Denne test køres på vores "live" database, og udføres ved REST ASSURED testing. 
