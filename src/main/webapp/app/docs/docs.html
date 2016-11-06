@@ -1,4 +1,36 @@
-<p>This is the partial for view 2.</p>
-<div>
-  <p>Data from server (Users ONLY) <b style="color: darkblue">{{data}}</b></p>
+<div class="tabbable tabs-left">
+    <ul class="nav nav-tabs">
+        <li class="active" ng-class="{active: docs.active.tab === 'teststrats'}">
+            <a ng-click='docs.active.tab = "teststrats"' data-toggle="tab">Test strategy</a>
+        </li>
+
+        <li ng-class="{active: docs.active.tab === 'who'}">
+            <a ng-click='docs.active.tab = "who"' data-toggle="tab">Who did what</a>
+        </li>
+
+        <li ng-class="{active: docs.active.tab === 'howto'}">
+            <a ng-click='docs.active.tab = "howto"' data-toggle="tab">How to system test</a>
+        </li>
+
+    </ul>
+
+    <div class="tab-content">
+        <div ng-switch='docs.active.tab'>
+            <div ng-switch-when='teststrats'>
+                <div ng-include='"app/docs/teststrategy.html"'>>
+                    
+                </div>
+            </div>
+            <div ng-switch-when='who'>
+                <div ng-include='"app/docs/whodidwhat.html"'>>
+                    
+                </div>
+            </div>
+            <div ng-switch-when='howto'>
+                <div ng-include='"app/docs/howtosystemtest.html"'>>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
