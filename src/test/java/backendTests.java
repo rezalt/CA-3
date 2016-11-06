@@ -77,7 +77,7 @@ public class backendTests
 
     // Tests adding a user.
     @Test
-    public void test1()
+    public void testCreateUser()
     {
 
         EntityManager em = emf.createEntityManager();
@@ -92,7 +92,18 @@ public class backendTests
 
     // Tests a wrong user login event
     @Test
-    public void test2()
+    public void testDeleteUser()
+    {
+        EntityManager em = emf.createEntityManager();
+        UserFacade uf = (UserFacade) security.UserFacadeFactory.getInstance();
+        uf.deleteUser("to");
+        User usr2 = em.find(User.class, "to");
+        //System.out.println("hey, mit navn er:"+usr2.getUserName());
+        assertTrue(usr2==null);
+    }
+    
+    @Test
+    public void testFailedLogin()
     {
         given().
                 contentType("application/json").
@@ -102,12 +113,30 @@ public class backendTests
                 then().
                 statusCode(401);
     }
+    
+    
+    @Test
+    public void testAlterUser()
+    {
+        EntityManager em = emf.createEntityManager();
+        UserFacade uf = (UserFacade) security.UserFacadeFactory.getInstance();
+        uf.deleteUser("to");
+        uf.deleteUser("Johntest");
+        User usr1 = new User("to", "Test");
+        uf.addUser(usr1);
+        uf.alterUser(usr1, "Johntest", "Arne");
+        User usr2 = em.find(User.class, "Johntest");
+        assertTrue(usr2.getUserName().equals("Johntest")&& em.find(User.class, "to")==null);
+    }
+    
+    
+    
 
     // Tests a correct user login event
     @Test
-    public void test3()
+    public void testSuccesfulLogin()
     {
-      deploy.DeploymentConfiguration.setDevModeOn();
+        deploy.DeploymentConfiguration.setDevModeOn();
         emf = Persistence.createEntityManagerFactory(deploy.DeploymentConfiguration.PU_NAME);
         given().
                 contentType("application/json").

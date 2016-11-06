@@ -43,7 +43,15 @@ public class UserFacade implements IUserFacade
         Query query = em.createQuery("SELECT u FROM User u");
         return query.getResultList();
     }
-
+    public User alterUser(User u, String username, String password)
+    {
+        deleteUser(u.getUserName());
+        u.setPassword(password);
+        u.setUserName(username);
+        
+        addUser(u);
+        return u;
+    }
     public User addUser(User u)
     {
 
