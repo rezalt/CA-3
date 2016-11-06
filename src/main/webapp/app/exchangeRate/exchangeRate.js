@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('myApp.view4', ['ngRoute'])
+angular.module('myApp.exchangeRate', ['ngRoute'])
 
         .config(['$routeProvider', function ($routeProvider) {
-                $routeProvider.when('/exRI', {
-                    templateUrl: 'app/view4/view4.html',
+                $routeProvider.when('/exchangeRate', {
+                    templateUrl: 'app/exchangeRate/exchangeRate.html',
                     controller: 'Currency',
                     controllerAs: "ctrl"
                 });

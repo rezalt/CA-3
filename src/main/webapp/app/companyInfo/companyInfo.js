@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('myApp.view3', ['ngRoute'])
+angular.module('myApp.companyInfo', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/companyInfo', {
-    templateUrl: 'app/view3/view3.html',
+    templateUrl: 'app/companyInfo/companyInfo.html',
     controller: 'View3Ctrl'
   });
 }])

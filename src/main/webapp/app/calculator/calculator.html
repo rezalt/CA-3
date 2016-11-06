@@ -1,29 +1,24 @@
-<!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<html>
-    <head>
-        <title>Rate Calculator</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div class="container">
-            
-            <input type="number" class="amount" placeholder="Input the amount">
-            <div class="row">
-                <div class="two.fifth">
-                    
-                    <select ng-model="currency" ng-options="x in currencies"></select>
-                    
-                </div>
-                <div class="one-fifth"></div>
-                <div class="two-fifth"></div>
-                
-            </div>
+
+
+<div style="max-width: 35%" class="form-group">
+            <label class="control-label">Currency converter</label>
+        <div class="input-group">
+            <input type="number" ng-model="ctrl.input" class="form-control" style="text-align: center" min = 0 placeholder="1">
         </div>
-    </body>
-</html>
+    <table class="table">
+        <tr>
+            <td>
+                <label for="singleSelect"> From: </label><br>
+                <select ng-model="currencyFrom" ng-options="currency.currencyCode for currency in ctrl.currencies"></select><br>
+            </td>
+            <td>
+                <label for="singleSelect"> To: </label><br>
+                <select ng-model="currencyTo" ng-options="currency.currencyCode for currency in ctrl.currencies"></select><br>
+            </td>
+        </tr>
+    </table>
+    <label class="control-label">Converted:{{ctrl.input| convert: currencyFrom.rate:currencyTo.rate }}</label>
+
+   
+</div> 
+

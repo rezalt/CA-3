@@ -19,22 +19,9 @@
         <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
         <script src='bower_components/angular-animate/angular-animate.min.js'></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.js"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-css/1.0.8/angular-css.min.js"></script>
-        <script src="app/app.js"></script> 
-        <script src="app/view1/view1.js"></script>
-        <script src="app/view2/view2.js"></script>
-        <script src="app/view3/view3.js"></script>
-        <script src="app/view4/view4.js"></script>
-        <script src="app/view5/view5.js"></script>
-        <script src="app/view6/view6.js"></script>
-        <script src="app/allUsers/allUsers.js"></script>
-        <script src="app/view6/login.js"></script>
-        <script src="app/components/auth.js"></script>
-        <script src="app/components/filters.js"></script>
-        <script src="app/components/directives.js"></script>
-        <script src="app/components/factories.js"></script>
-        <script src="app/components/services.js"></script>
+       
     </head>
     <body>
         <div class="container"  >
@@ -55,7 +42,8 @@
                             <li class="dropdown">                  
                             <li class=""><a href="#/docs" >Documentation</a></li>
                             <li class=""><a ng-show="isUser" href="#/companyInfo" >Company Info</a></li>
-                            <li class=""><a ng-show="isUser" href="#/exRI" >Exchange Rate Info</a></li>
+                            <li class=""><a ng-show="isUser" href="#/exchangeRate" >Exchange Rate Info</a></li>
+                            <li class=""><a ng-show="isUser" href="#/calculator" >Currency Converter</a></li>
                             <li class=""><a ng-show="isAdmin" href="#/allUsers" >All Users</a></li>
                             <li class=""><a href="#/login">Login Section</a></li>
                             <li class="">
@@ -93,5 +81,21 @@
             <button class="btn btn-primary" type="button" ng-click="ok()" autofocus>OK</button>
             </div>
         </script>
+
+        <!-- Lazy load -->
+        <script src="app/home/home.js"></script>
+        <script src="app/docs/docs.js"></script>
+        <script src="app/companyInfo/companyInfo.js"></script>
+        <script src="app/exchangeRate/exchangeRate.js"></script>
+        <script src="app/calculator/calculator.js"></script>
+        <script src="app/allUsers/allUsers.js"></script>
+        <script src="app/signUp/signUp.js"></script>
+        <script src="app/login/login.js"></script>
+        <script src="app/app.js"></script> 
+        <script src="app/components/auth.js"></script>
+        <script src="app/components/filters.js"></script>
+        <script src="app/components/directives.js"></script>
+        <script src="app/components/factories.js"></script>
+        <script src="app/components/services.js"></script>
     </body>
 </html>
